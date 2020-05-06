@@ -24,5 +24,6 @@ public class LESSON1 {
         System.out.print(result);
 
     }
-
 }
+
+
