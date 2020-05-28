@@ -1,15 +1,17 @@
 package lesson_4;
+import java.util.Arrays;
 
 public class Student {
-    public String name;
-    public String surname;
-    public int [] marks;
+    private String name;
+    private String surname;
+    private Mark[] marks;
+    private Visit[] visits;
 
-
-    public Student(String name, String surname, int[] marks) {
+    public Student(String name, String surname, Mark[] marks, Visit[] visits) {
         this.name = name;
         this.surname = surname;
         this.marks = marks;
+        this.visits = visits;
     }
 
     public String getName() {
@@ -24,28 +26,49 @@ public class Student {
         return surname;
     }
 
-    public void setSurname(String name) {
+    public void setSurname(String surname) {
         this.surname = surname;
     }
 
-    public void setMark(int lessonNumber, int mark) {
-        if (marks.length >= lessonNumber && mark >= 0) {
-            marks[lessonNumber - 1] = mark;
-        }
+    public Mark[] getMarks() {
+        return marks;
     }
 
+    public void setMarks(Mark[] marks) {
+        this.marks = marks;
+    }
 
+    public Visit[] getVisits() {
+        return visits;
+    }
+
+    public void setVisits(Visit[] visits) {
+        this.visits = visits;
+    }
+
+    public int compareSurname(Student sStudent) {
+
+        String fString = getSurname();
+        String sString = sStudent.getSurname();
+
+        return fString.compareTo(sString);
+    }
+
+    public static int compareSurname(Student fStudent, Student sStudent) {
+
+        String fString = fStudent.getSurname();
+        String sString = sStudent.getSurname();
+
+        return fString.compareTo(sString);
+    }
+
+    @Override
     public String toString() {
-        String string = name;
-        string = string + " " + surname;
-        if (marks != null) {
-            for (int mark : marks) {
-                string = string + " " + mark;
-            }
-        }
-        return string;
+        return "Student{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", marks=" + Arrays.toString(marks) +
+                ", visits=" + Arrays.toString(visits) +
+                '}';
     }
-
-
 }
-
