@@ -3,71 +3,71 @@ import java.util.Random;
 
 
 public class LESSON2 {
-                              //    КАЛЬКУЛЯТОР UPDATE                   //
+    //    КАЛЬКУЛЯТОР UPDATE                   //
     static Scanner scanner = new Scanner(System.in);
+//
+//    public static void main(String[] args) {
+//        double num1 = getNum1();
+//        double num2 = getNum2();
+//        char action = getAction();
+//        double result = calc(num1, num2, action);
+//        System.out.println("Result - " + result);
+//    }
+//
+//    public static double getNum1() {
+//        System.out.println("Please input first number: ");
+//        double num1;
+//        if (scanner.hasNextDouble()) {
+//            num1 = scanner.nextDouble();
+//        } else {
+//            System.out.println("Error entering number. Try again ");
+//            scanner.next();
+//            num1 = getNum1();
+//        }
+//        return num1;
+//    }
+//
+//    public static double getNum2() {
+//        System.out.println("Please input second number: ");
+//        double num2;
+//        if (scanner.hasNextDouble()) {
+//            num2 = scanner.nextDouble();
+//        } else {
+//            System.out.println("Error entering number. Try again ");
+//            scanner.next();
+//            num2 = getNum2();
+//        }
+//        return num2;
+//    }
+//
+//    public static char getAction() {
+//        System.out.println("Select an action : \n + \n - \n / \n * ");
+//        char action;
+//        if (scanner.hasNext()) {
+//            action = scanner.next().charAt(0);
+//        } else {
+//            System.out.println("Error");
+//            scanner.next();
+//            action = getAction();
+//        }
+//        return action;
+//    }
 
-    public static void main(String[] args) {
-        double num1 = getNum1();
-        double num2 = getNum2();
-        char action = getAction();
-        double result = calc(num1, num2, action);
-        System.out.println("Result - " + result);
-    }
-
-    public static double getNum1() {
-        System.out.println("Please input first number: ");
-        double num1;
-        if (scanner.hasNextDouble()) {
-            num1 = scanner.nextDouble();
-        } else {
-            System.out.println("Error entering number. Try again ");
-            scanner.next();
-            num1 = getNum1();
-        }
-        return num1;
-    }
-
-    public static double getNum2() {
-        System.out.println("Please input second number: ");
-        double num2;
-        if (scanner.hasNextDouble()) {
-            num2 = scanner.nextDouble();
-        } else {
-            System.out.println("Error entering number. Try again ");
-            scanner.next();
-            num2 = getNum2();
-        }
-        return num2;
-    }
-
-    public static char getAction() {
-        System.out.println("Select an action : \n + \n - \n / \n * ");
-        char action;
-        if (scanner.hasNext()) {
-            action = scanner.next().charAt(0);
-        } else {
-            System.out.println("Error");
-            scanner.next();
-            action = getAction();
-        }
-        return action;
-    }
-
-    public static double calc(double num1, double num2, char action) {
-        double result;
-        switch (action) {
-            case '+' -> result = num1 + num2;
-            case '-' -> result = num1 - num2;
-            case '*' -> result = num1 * num2;
-            case '/' -> result = num1 / num2;
-            default -> {
-                System.out.println("Error.Try again .");
-                result = calc(num1, num2, getAction());
-            }
-
-        }
-        return result;
-    }
+    //    public static double calc(double num1, double num2, char action) {
+//        double result;
+//        switch (action) {
+//            case '+' -> result = num1 + num2;
+//            case '-' -> result = num1 - num2;
+//            case '*' -> result = num1 * num2;
+//            case '/' -> result = num1 / num2;
+//            default -> {
+//                System.out.println("Error.Try again .");
+//                result = calc(num1, num2, getAction());
+//            }
+//
+//        }
+//        return result;
+//    }
     //                          Среднее арифметическое двух числе               //
 //    public static void main(String[] args) {
 //        Scanner scanner = new Scanner(System.in);
@@ -137,24 +137,39 @@ public class LESSON2 {
 //            System.out.println();
 //        }
 //    }
-    //                      КОНВЕРТ                     //
-//    public static void main(String[] args) {
-//        int VerticalSide = 10;
-//        int HorizontalSide = 10;
-//        for (int i = 1; i <= VerticalSide; i++) {
-//            for (int j = 1; j <= HorizontalSide; j++) {
-//                if ((i == VerticalSide) || (j == 1) ||
-//                        (j == HorizontalSide) || (i == 1) ||
-//                        (j == i) || (i + j == 1 + VerticalSide)) {
-//                    System.out.print("*");
-//                } else {
-//                    System.out.print(" ");
-//                }
-//            }
-//            System.out.print("\n");
-//        }
-//    }
-    //           Шахматный порядок          //
+    //          КОНВЕРТ       //
+    public static void main(String[] args) {
+        char asterisk;
+        int x;
+        System.out.println("Веддите длину и высоту");
+        int HorizontalSide = scanner.nextInt();
+        int VerticalSide = scanner.nextInt();
+        for (int i = 0; i < HorizontalSide; i++){
+            for (int j = 0; j < VerticalSide; j++) {
+                if (i == 0 || i == HorizontalSide - 1) {
+                    asterisk = ('*');
+                } else {
+                    if (j == 0 || j == VerticalSide - 1) {
+                        asterisk = ('*');
+                    } else {
+                        x = (int) Math.round((double) VerticalSide / (double) HorizontalSide * (i + 1));
+
+                        if (j == x - 1 || j == VerticalSide - x) {
+                            asterisk = ('*');
+                        } else {
+                            asterisk = (' ');
+                        }
+                    }
+                }
+
+                if (j == VerticalSide - 1) {
+                    System.out.println(asterisk);
+                } else {
+                    System.out.print(asterisk);
+                }
+            }
+        }
+            //           Шахматный порядок          //
 //    public static void main(String[] args) {
 //
 //        for (int i = 0; i < 12; i++) {
@@ -176,7 +191,7 @@ public class LESSON2 {
 //        }
 //
 //    }
-    //                          Чётность числа              //
+            //                          Чётность числа              //
 //    public static void main(String[] args) {
 //        int num;
 //        System.out.println("Введите число: ");
@@ -187,7 +202,7 @@ public class LESSON2 {
 //        else
 //            System.out.println("Число нечетное");
 //    }
-    // ПРостое или сложное число //
+            // ПРостое или сложное число //
 //    public static void main(String[] args) {
 //        Scanner scanner = new Scanner(System.in);
 //        System.out.println("Введите число ");
@@ -207,7 +222,7 @@ public class LESSON2 {
 //            System.out.println("Число простое");    // вывод
 //        }
 //    }
-    //                      КРАТНОСТЬ                 //
+            //                      КРАТНОСТЬ                 //
 //    public static void main(String[] args) {
 //        Scanner scanner = new Scanner(System.in);
 //        System.out.print("Введите ваше число: ");
@@ -220,7 +235,9 @@ public class LESSON2 {
 //        }
 //        System.out.print(number);
 //    }
-}
+        }
+    }
+
 
 
 
