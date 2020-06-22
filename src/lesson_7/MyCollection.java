@@ -5,123 +5,156 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 
-    public class MyCollection implements Collection {
 
-        private Object[] Array = new Object[0];
+class MyContainer implements Collection {
 
-        @Override
-        public int size() {
-            int size;
-            return size = Array.length;
-        }
+    private Object[] objects = new Object[0];
 
-        @Override
-        public boolean add(Object Object) {
+    @Override
+    public int size() {
 
-            Object[] newArray = new Object[Array.length + 1];
-            for (int i = 0; i < Array.length; i++) {
-                newArray[i] = Array[i];
-            }
-            newArray[Array.length] = Object;
-            Array = newArray;
-
-            return false;
-        }
-
-        @Override
-        public String toString() {
-            String result = "";
-            for (Object o : Array) {
-                result += (" " + o.toString());
-            }
-            return result;
-        }
-
-        @Override
-        public boolean isEmpty() {
-            boolean bool;
-            if (Array.length == 0) {
-                bool = false;
-            } else {
-                bool = true;
-            }
-            return bool;
-        }
-
-        @Override
-        public boolean contains(Object object) {
-            boolean isContains = false;
-            for(int i = 0; i < Array.length; i++){
-                if(Array[i] == object){
-                    isContains = true;
-//                System.out.println("Contains");
-                }else {
-                    isContains = false;
-//                System.out.println("Not contains");
-                }
-            }
-//        System.out.println(isContains);
-            return isContains;
-        }
-
-
-
-        @Override
-        public boolean remove(Object object) {
-            Object[] newArray = new Object[Array.length];
-            for(int i =0; i < Array.length; i++){
-                if(Array[i] == object){
-                    newArray[i] = null;
-                }else{
-                    newArray[i] = Array[i];
-                }
-            }
-            Array = newArray;
-            return false;
-        }
-
-        @Override
-        public boolean addAll(Collection c) {
-            Object[] toAddAll = c.toArray();
-            for(Object obToAdd : toAddAll){
-                add(obToAdd);
-            }
-            return false;
-        }
-
-        @Override
-        public void clear() {
-            Array = null;
-
-        }
-
-        @Override
-        public Iterator iterator() {
-            return null;
-        }
-
-        @Override
-        public Object[] toArray() {
-            return new Object[0];
-        }
-
-        @Override
-        public boolean retainAll(Collection c) {
-            return false;
-        }
-
-        @Override
-        public boolean removeAll(Collection c) {
-            return false;
-        }
-
-        @Override
-        public boolean containsAll(Collection c) {
-            return false;
-        }
-
-        @Override
-        public Object[] toArray(Object[] a) {
-            return new Object[0];
-        }
+        return objects.length;
     }
+
+    @Override
+    public boolean isEmpty() {
+
+        return size() == 0;
+    }
+
+    @Override
+    public boolean contains(Object o) {
+        boolean contain = false;
+
+        for (Object obj : objects) {
+            if (obj == (o)) {
+                contain = true;
+                break;
+            }
+
+        }
+
+        return contain;
+    }
+
+    @Override
+    public Iterator iterator() {
+
+        return new Iterator() {
+
+            private int index = 0;
+
+            @Override
+            public boolean hasNext() {
+                return index < objects.length;
+            }
+
+            @Override
+            public Object next() {
+                if (index == objects.length) {
+                    throw new IndexOutOfBoundsException("");
+                }
+                Object result = objects[index];
+                index++;
+                return result;
+            }
+        };
+    }
+
+    @Override
+    public Object[] toArray() {
+        return objects;
+    }
+
+    @Override
+    public boolean add(Object o) {
+
+        int size = size();
+
+        Object[] temp = new Object[size + 1];
+        for (int i = 0; i < objects.length; i++) {
+            temp[i] = objects[i];
+        }
+        temp[size] = o;
+        objects = temp;
+
+        return true;
+    }
+
+
+    @Override
+    public boolean remove(Object o) {
+
+        int size = size();
+
+        Object[] temp = objects;
+
+        objects = new Object[0];
+
+        for (int i = 0; i < temp.length; i++) {
+            if (!temp[i].equals(o)) {
+                add(temp[i]);
+            }
+        }
+        return true;
+
+    }
+
+    // New Method to implement retainAll
+
+
+    @Override
+    public boolean addAll(Collection c) {
+        for (Object o : c) {
+            add(o);
+        }
+        return true;
+    }
+
+    @Override
+    public void clear() {
+        objects = new Object[0];
+    }
+
+    @Override
+    public boolean retainAll(Collection c) {
+
+        for (Object o : objects) {
+            if (!c.contains(o)) {
+                remove(o);
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean removeAll(Collection c) {
+
+        for (Object o : c) {
+            remove(o);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean containsAll(Collection c) {
+        for (Object o : c) {
+            if (!contains(o)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public Object[] toArray(Object[] a) {
+        return new Object[0];
+    }
+
+    @Override
+    public String toString() {
+        return "MyContainer{" +
+                "objects=" + Arrays.toString(objects) +
+                '}';
+    }
+}

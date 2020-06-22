@@ -1,74 +1,68 @@
 package lesson_7;
+
 import java.util.ArrayList;
 
 
 public class MyCollectionMain {
     public static void main(String[] args) {
-        MyCollection Arr = new MyCollection();
+        MyContainer container = new MyContainer();
 
-        {// test isEmpty
-            if (Arr.isEmpty()) {
-                System.out.println("Isn`t empty");
-            } else {
-                System.out.println("Empty");
-            }
-        }
+        MyContainer container2 = new MyContainer();
 
-        {// test add
-            Arr.add("Hello");
-            Arr.add("Hi");
-            System.out.println(Arr);
-        }
+        container.add(1);
+        container.add(2);
+        container.add(3);
+        container.add(4);
+        container.add(5);
 
-        {// test isEmpty
-            if (Arr.isEmpty()) {
-                System.out.println("Isn`t empty");
-            } else {
-                System.out.println("Empty");
-            }
-        }
+        container2.add(2);
+        container2.add(4);
+        container2.add(10);
+        container2.add(11);
 
-        {// test addAll
-            ArrayList array = new ArrayList();
-            array.add(1);
-            array.add(2);
-            Arr.addAll(array);
-            System.out.println(array);
-            array = null;
-        }
 
-        {// test remove
-            ArrayList array = new ArrayList();
-            array.add(1);
-            array.add(8);
-            array.add(7);
-            array.add(5);
-            System.out.println(array);
-            array.remove(3); // remove object 8
-            System.out.println("after remove" + array);
-            array = null;
-        }
+        print(container);
 
-        {//test clear
-            ArrayList array = new ArrayList();
-            array.add(1);
-            array.add(8);
-            array.add(7);
-            array.add(5);
-            System.out.println(array);
-            array.clear();
-            System.out.println(array);
-            array = null;
-        }
 
-        {// test Contains
-            Arr.add(1);
-            Arr.add(8);
-            Arr.add(7);
-            Arr.add(5);
-            Arr.add("test");
-            System.out.println(Arr);
-            System.out.println(Arr.contains("test"));
-        }
+        container.remove(5);
+
+        print(container);
+
+        print("contains: " + 5 + " " + container.contains(5));
+        print("contains: " + 4 + " " + container.contains(4));
+
+        print("size: " + container.size());
+
+        container.add(5);
+        print(container);
+
+        print(container2);
+
+        print("empty: " + container2.isEmpty());
+        print("isNull: " + (container2 == null));
+
+
+        container.addAll(container2);
+
+        print(container);
+
+
+        container.retainAll(container2);
+        print(container);
+
+        container.add(15);
+
+        print(container);
+        container.removeAll(container2);
+        print(container);
+
+        container.clear();
+        print(container);
+
+
+    }
+
+    private static void print(Object o) {
+        System.out.println(o.toString());
     }
 }
